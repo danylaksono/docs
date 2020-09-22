@@ -1,0 +1,794 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>Panduan Praktikum PJ Minggu 2</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url('file:///C://Users//Geomatika//AppData//Roaming//Typora/themes/vue/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}@import '';
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write ol li {
+    padding-left: 0.5rem;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+#write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+#write code, tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+tt {
+    margin: 0 2px;
+}
+
+#write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: var(--font-sans-serif);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+/* completely hide the element where it is not needed */
+.page-break
+{
+    display: none; 
+}
+@media print, (overflow-block: paged) or (overflow-block: optional-paged)
+{
+  .page-break
+  {
+    display: block;
+    page-break-after: always; /* CSS 2 */
+         break-after: page;   /* CSS 3+ */
+  }
+}/* completely hide the element where it is not needed */
+.page-break
+{
+    display: none; 
+}
+@media print, (overflow-block: paged) or (overflow-block: optional-paged)
+{
+  .page-break
+  {
+    display: block;
+    page-break-after: always; /* CSS 2 */
+         break-after: page;   /* CSS 3+ */
+  }
+}
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="panduan-praktikum-penginderaan-jauh" class="md-header-anchor"></a><span>Panduan Praktikum Penginderaan Jauh</span></h1><h1><a name="minggu-2" class="md-header-anchor"></a><span>Minggu 2</span></h1><h2><a name="daftar-isi" class="md-header-anchor"></a><span>Daftar Isi</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n0"><a class="md-toc-inner" href="#panduan-praktikum-penginderaan-jauh">Panduan Praktikum Penginderaan Jauh</a></span><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n7"><a class="md-toc-inner" href="#minggu-2">Minggu 2</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n12"><a class="md-toc-inner" href="#daftar-isi">Daftar Isi</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n29"><a class="md-toc-inner" href="#pengantar">Pengantar</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n82"><a class="md-toc-inner" href="#tentang-dokumen-ini">Tentang Dokumen ini</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n237"><a class="md-toc-inner" href="#lisensi-dokumen">Lisensi Dokumen</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n174"><a class="md-toc-inner" href="#sistematika-penulisan-dokumen">Sistematika Penulisan Dokumen</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n73"><a class="md-toc-inner" href="#bagian-i-pengantar-penginderaan-jauh">Bagian I. Pengantar Penginderaan Jauh</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n75"><a class="md-toc-inner" href="#i1-sifat-gelombang-elektromagnetik">I.1. Sifat Gelombang Elektromagnetik</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n100"><a class="md-toc-inner" href="#i2-spectral-response">I.2. Spectral Response</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n259"><a class="md-toc-inner" href="#i3-bagaimana-remote-sensing-bekerja">I.3. Bagaimana Remote Sensing bekerja</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n102"><a class="md-toc-inner" href="#i3-band-pada-citra-satelit">I.3. Band pada Citra Satelit</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n104"><a class="md-toc-inner" href="#i4-metadata-citra-satelit">I.4. Metadata Citra Satelit</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n35"><a class="md-toc-inner" href="#bagian-ii-pembagian-satelit-penginderaan-jauh">Bagian II. Pembagian Satelit Penginderaan Jauh</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n408"><a class="md-toc-inner" href="#ii1-resolusi-citra-satelit">II.1. Resolusi Citra Satelit</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n110"><a class="md-toc-inner" href="#resolusi-spasial">Resolusi Spasial</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n423"><a class="md-toc-inner" href="#resolusi-temporal">Resolusi Temporal</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n113"><a class="md-toc-inner" href="#resolusi-spektral">Resolusi Spektral</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n115"><a class="md-toc-inner" href="#resolusi-radiometrik">Resolusi Radiometrik</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n42"><a class="md-toc-inner" href="#ii2-mengenal-beberapa-vendor-penyedia-citra-satelit">II.2. Mengenal beberapa vendor penyedia citra satelit</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n77"><a class="md-toc-inner" href="#nasa-national-space-agencyhttpsearthdatanasagovlearnremote-sensing">NASA (National Space Agency)</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n122"><a class="md-toc-inner" href="#esa-european-space-agencyhttpswwwesaint">ESA (European Space Agency)</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n124"><a class="md-toc-inner" href="#digital-globemaxarhttpswwwmaxarcomconstellation">Digital Globe/Maxar</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n139"><a class="md-toc-inner" href="#planetlabshttpswwwplanetcomproductsplanet-imagery">PlanetLabs</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n16"><a class="md-toc-inner" href="#bagian-iii-memperoleh-citra-penginderaan-jauh">Bagian III. Memperoleh Citra Penginderaan Jauh</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n472"><a class="md-toc-inner" href="#iii1-citra-bebas-dan-terbuka">III.1. Citra Bebas dan Terbuka</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n150"><a class="md-toc-inner" href="#earth-explorer">Earth Explorer</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n157"><a class="md-toc-inner" href="#sentinel-hub">Sentinel Hub</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n151"><a class="md-toc-inner" href="#remote-pixel">Remote Pixel</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n147"><a class="md-toc-inner" href="#iii2-citra-satelit-komersial">III.2. Citra Satelit Komersial</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n680"><a class="md-toc-inner" href="#eos-land-viewer">EOS Land Viewer</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n684"><a class="md-toc-inner" href="#spymesat">SpyMeSAT</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n62"><a class="md-toc-inner" href="#bagian-v-pengantar-google-earth-engine">Bagian V. Pengantar Google Earth Engine</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n458"><a class="md-toc-inner" href="#v1-katalog-citra-google-earth-engine">V.1. Katalog Citra Google Earth Engine</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n129"><a class="md-toc-inner" href="#v2-antarmuka-google-earth-engine">V.2. Antarmuka Google Earth Engine</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n131"><a class="md-toc-inner" href="#v3-mengakses-informasi-citra-dengan-gee">V.3. Mengakses Informasi Citra dengan GEE</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1105"><a class="md-toc-inner" href="#beberapa-rujukan-yang-berguna">Beberapa Rujukan yang berguna</a></span></p></div><hr /><h2><a name="pengantar" class="md-header-anchor"></a><span>Pengantar</span></h2><h3><a name="tentang-dokumen-ini" class="md-header-anchor"></a><span>Tentang Dokumen ini</span></h3><p><span>Dokumen ini merupakan panduan yang disusun untuk memandu kegiatan praktikum Penginderaan Jauh di lingkungan Departemen Teknik Geodesi UGM, khususnya pada semester gasal tahun ajaran 2020/2021. Dokumen ini merupakan bagian dari beberapa dokumen yang dibuat sebagai panduan praktek tiap minggunya, yang mana merupakan satu kesatuan dokumen Panduan Praktikum Penginderaan Jauh.  </span></p><p><span>Dokumen ini ditulis untuk kalangan sendiri.</span></p><p>&nbsp;</p><h3><a name="lisensi-dokumen" class="md-header-anchor"></a><span>Lisensi Dokumen</span></h3><p><span>Dokumen ini dan latihan yang ada di dalamnya disusun di bawah panduan </span><a href='https://opensource.org/licenses/MIT'><span>Lisensi MIT</span></a><span>. </span></p><p><span>Dokumen ini ditulis oleh Dany Laksono untuk </span><strong><span>Departemen Teknik Geodesi UGM</span></strong><span>, tahun 2020. </span></p><p>&nbsp;</p><h3><a name="sistematika-penulisan-dokumen" class="md-header-anchor"></a><span>Sistematika Penulisan Dokumen</span></h3><p><span>Dokumen ini mengikuti sistematika sebagai berikut:</span></p><p><span>Tanda </span><code>Seperti ini</code><span> menunjukkan menu atau tombol yang tersedia pada program atau website yang perlu diperhatikan atau di-klik. Tanda ini juga digunakan untuk menyatakan potongan kode program yang disebutkan dalam paragraf.</span></p><p><span>Tulisan berwarna hijau </span><a href=''><span>Seperti ini</span></a><span> menunjukkan link yang apabila di-klik akan menuju pada halaman web tertentu atau bagian dokumen yang lain. Penulisan link pada dokumen ini digunakan untuk menunjukkan referensi yang terkait dengan penjelasan yang sedang dibahas pada bagian tersebut.</span></p><p><span>Adapun blok kode program ditulis seperti ini:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="javascript"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="javascript"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Memanggil Citra Landsat</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">image</span> <span class="cm-operator">=</span> <span class="cm-variable">ee</span>.<span class="cm-property">Image</span>(<span class="cm-string">'LANDSAT/LC08/C01/T1/LC08_044034_20140318'</span>);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Membuat daftar Band pada citra yang telah dipanggil</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">bandNames</span> <span class="cm-operator">=</span> <span class="cm-variable">image</span>.<span class="cm-property">bandNames</span>();</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">print</span>(<span class="cm-string">'Band pada Citra: '</span>, <span class="cm-variable">bandNames</span>); <span class="cm-comment">// ee.List yang berisi nama-nama Band</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Memilih Band pertama</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">B1</span> <span class="cm-operator">=</span> <span class="cm-variable">image</span>.<span class="cm-property">select</span>(<span class="cm-string">'B1'</span>)</span></pre></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Menambahkan Citra pada Kanvas GEE</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Map</span>.<span class="cm-property">addLayer</span>(<span class="cm-variable">B1</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 264px;"></div><div class="CodeMirror-gutters" style="display: none; height: 264px;"></div></div></div></pre><p><span>Latihan untuk dikerjakan pada dokumen ini ditulis dalam bentuk blok:</span></p><blockquote><p><strong><span>Latihan 1: Mengunduh Citra melalui EarthExplorer</span></strong><span> </span></p><p><span>Pada latihan ini, Anda diminta untuk melakukan pencarian citra dengan kriteria tertentu ...</span></p></blockquote><p><span>Teks seperti ini menunjukkan peringatan yang perlu diperhatikan sebelum melangkah lebih lanjut:</span></p><blockquote style="background-color:lightyellow">
+    <span style="color:orange"><strong>Peringatan:</strong></span>
+    Apabila Anda meng-klik tombol tersebut, citra Landsat dengan ukuran besar akan diunduh ke komputer Anda. Pastikan jaringan internet lancar dan memadai. 
+</blockquote><p><span>Huruf </span><strong><span>Tebal</span></strong><span> menunjukkan informasi penting, seperti nama citra satelit atau perusahaan penyedia citra satelit. Huruf miring menunjukkan istilah asing atau kata yang perlu disimak lebih lanjut.</span></p><p><mark><em><span>Fun Fact</span></em></mark><span> menunjukkan hal yang tidak secara langsung terkait dengan pembahasan di materi tersebut, tetapi tetap menarik untuk diketahui.</span></p><div style="page-break-after: always;"></div><h2><a name="bagian-i-pengantar-penginderaan-jauh" class="md-header-anchor"></a><span>Bagian I. Pengantar Penginderaan Jauh</span></h2><p><span>Dokumen ini tidak membahas mengenai teori penginderaan jauh secara khusus, karena fungsi utamanya sebagai panduan praktikum. Bagian ini hanya akan membahas mengenai beberapa landasan penting dalam Penginderaan Jauh sebagai pengantar kegiatan praktek yang nantinya akan dilakukan. Rujukan lebih lengkap mengenai teori penginderaan jauh dapat mengacu pada Teksbook yang tersedia, seperti </span><a href='https://webapps.itc.utwente.nl/librarywww/papers_2009/general/principlesremotesensing.pdf'><span>buku ini</span></a><span>.</span></p><h3><a name="i1-sifat-gelombang-elektromagnetik" class="md-header-anchor"></a><span>I.1. Sifat Gelombang Elektromagnetik</span></h3><p><span>Gelombang elektromagnetik merupakan salah satu temuan yang sangat bermanfaat bagi umat manusia. Penelitian mengenai sifat-sifat Gelombang elektromagnetik telah dimulai sejak abad ke-17. Sejak dulu, kita telah mengenal bahwa cahaya &#39;putih&#39; pada dasarnya terdiri dari kumpulan warna lain (kita menyebutnya &#39;</span><strong><span>Spektrum Warna</span></strong><span>&#39;), persis seperti apa yang kita lihat pada pelangi yang timbul setelah hujan. Berbagai penelitian terdahulu, seperti yang dilakukan oleh Isaac Newton maupun Christiaan Huygens, mengurai sifat-sifat gelombang dari cahaya: sebagaimana sebuah gelombang sinus, cahaya memiliki panjang gelombang dan frekuensi yang berbeda-beda, seiring dengan tingkat energi yang dimiliki oleh rentang gelombang tersebut.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921001010245.png" referrerpolicy="no-referrer" alt="image-20200921001010245"></p><p><a href='http://www.webexhibits.org/colorart/bh.html'><span>Penyelidikan Newton tentang cahaya</span></a><span> menyimpulkan bahwa </span><em><span>warna</span></em><span> yang kita lihat merupakan akibat dari perbedaan panjang gelombang cahaya pada rentang tertentu. Warna tertentu dihasilkan sebagai hubungan dari panjang gelombang dan frekuensinya. Pada kasus warna yang sampai ke mata kita, warna merah merupakan gelombang elektromagnetik yang memiliki panjang gelombang paling besar, dengan frekuensi yang paling rendah. Sebaliknya, warna biru memiliki panjang gelombang yang paling pendek, dengan tingkat frekuensi yang paling tinggi di rentang warna yang tampak oleh mata kita (kita sebut sebagai </span><em><span>visible spectrum</span></em><span> atau spektrum tampak). Kita kemudian mengenali ketiga macam warna ini sesuai dengan bagaimana mata kita merespons perbedaan panjang gelombang: Merah, Kuning dan Biru (</span><em><span>Red</span></em><span>, </span><em><span>Green</span></em><span> dan </span><em><span>Blue</span></em><span>).</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921002741585.png" referrerpolicy="no-referrer" alt="image-20200921002741585"></p><p><span>Dengan semakin berkembangnya berbagai sensor, kita kemudian dapat mengenali berbagai gelombang yang berada di luar rentang gelombang yang tampak oleh mata kita. Gelombang </span><em><span>Infra-merah</span></em><span>, misalnya, merupakan gelombang dengan panjang gelombang yang lebih panjang dibandingkan dengan warna merah. Setiap gelombang pada rentang tertentu ini juga dikenali memiliki sifat yang berbeda-beda. Gelombang elektromagnetik dengan panjang gelombang sekitar 1 nanometer yang kita sebut sebagai Sinar-X atau </span><em><span>X-Ray</span></em><span> memiliki panjang gelombang pendek dengan tingkat energi yang tinggi, sehingga mampu menembus daging dan otot namun berhenti pada tulang.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/220px-X-ray_by_Wilhelm_Röntgen_of_Albert_von_Kölliker's_hand_-_18960123-02.jpg" referrerpolicy="no-referrer" alt="img"></p><p><span>(</span><em><span>Gambar hasil X-Ray pertama, tangan kiri Nyonya Röntgen yang diambil suaminya, </span><a href='https://en.wikipedia.org/wiki/Wilhelm_R%C3%B6ntgen'><span>Wilhelm Conrad Röntgen</span></a></em><span>)</span></p><p><span>Dengan mengenali sifat-sifat gelombang pada spektrum Gelombang elektromagnetik, kita dapat memanfaatkan berbagai sifat ini. Televisi yang Anda tonton menggunakan gelombang dengan panjang gelombang yang sangat panjang (mencapai 1-10 meter), yang dengan sifat ini dapat menembus atap rumah tanpa kesulitan. Radar digunakan oleh militer untuk melihat objek di permukaan bumi yang terhalang oleh awan tebal, dan seterusnya.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921001325781.png" referrerpolicy="no-referrer" alt="image-20200921001325781"></p><p><em><span>Mengapa gelombang yang tampak oleh mata kita hanya terdiri dari warna merah, hijau dan biru saja?</span></em></p><p><span>Jawabannya terletak pada desain mata kita. Pada mata terdapat </span><em><span>Cone cell</span></em><span> yang bertugas mengirimkan warna yang diterima oleh mata kepada otak untuk diterjemahkan sebagai warna. Terdapat tiga macam </span><em><span>cone cell</span></em><span> yang ada pada mata kita. Tebak, apa saja cone cell tersebut? tentunya tiap </span><em><span>reseptor</span></em><span> pada cone cell tersebut sensitif terhadap gelombang elektromagnetik dengan panjang gelombang yang kita kenal: merah, hijau dan biru.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921005038416.png" referrerpolicy="no-referrer" alt="image-20200921005038416"></p><p>&nbsp;</p><p><mark><em><span>Fun Fact:</span></em></mark><span> </span><strong><span>Udang mantis</span></strong><span> dikenal memiliki </span><em><span>12 jenis photoreceptor</span></em><span>, 4 kali lipat lebih banyak daripada manusia. Dengan demikian, udang mantis mampu melihat objek yang tidak tampak secara kasat mata oleh kita manusia. Gelombang InfraMerah yang bagi kita hanya terasa sebagai panas barangkali tampak begitu berwarna oleh si udang mantis! </span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921005540116.png" referrerpolicy="no-referrer" alt="image-20200921005540116"></p><p><span>Dapat kita simpulkan bahwa pemahaman terhadap gelombang elektromagnetik menuntun manusia untuk memahami berbagai fenomena di sekitarnya, sekaligus memanfaatkannya untuk berbagai keperluan. Bidang penginderaan jauh yang kita pelajari saat ini merupakan pemanfaatan langsung terhadap bermacam-macam gelombang elektromagnetik dan sifatnya.</span></p><h3><a name="i2-spectral-response" class="md-header-anchor"></a><span>I.2. Spectral Response</span></h3><p><em><span>Mengapa daun tumbuhan berwarna hijau?</span></em></p><p><span>Pertanyaan yang sepertinya sepele ini merupakan landasan dari ilmu penginderaan jauh seperti yang kita kenal sekarang. Gelombang Elektromagnetik yang dipancarkan oleh matahari mengenai objek-objek di permukaan bumi dan terpantul ke mata kita, sehingga kita melihat dunia berwarna-warni. Darimana warna ini berasal? jawabannya adalah karena gelombang elektromagnetik yang diserap atau dipantulkan oleh benda-benda ini dan sampai ke mata kita, manusia. Kombinasi pantulan gelombang elektromagnetik yang sampai ke mata dengan </span><em><span>panjang gelombang</span></em><span> berbeda-lah yang menyebabkan dunia kita penuh warna.</span></p><p><span>Tiap objek di dunia ini memiliki sifat yang berbeda-beda dalam menyerap atau memantulkan gelombang elektromagnetik dengan panjang gelombang tertentu. Ada objek yang menyerap gelombang tertentu dan memantulkan yang lain, sehingga pantulan yang sampai ke mata kita inilah yang menjadi warna objek tersebut. Apabila suatu objek menyerap </span><strong><span>semua</span></strong><span> gelombang elektromagnetik yang sampai kepadanya, maka mata kita akan menerjemahkan warna objek tersebut sebagai </span><strong><span>hitam</span></strong><span>. Demikian sebaliknya, objek yang memantulkan semua gelombang elektromagnetik akan tampak berwarna putih bagi mata kita.</span></p><p><mark><em><span>Fun Fact</span></em></mark><span>: </span><strong><span>Vantablack</span></strong><span> adalah objek paling hitam yang ada di muka bumi saat ini. Bahan ini didesain untuk menyerap semua gelombang elektromagnetik yang diterimanya, sehingga gelombang yang dipantulkan sangat sedikit diterima oleh mata kita. Akibatnya, objek ini terlihat </span><a href='https://en.wikipedia.org/wiki/Vantablack'><span>begitu hitam</span></a><span>.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/face-vanta-1024x762.png" referrerpolicy="no-referrer" alt="Surrey NanoSystems' newly developed, non-nanotube super black paint. Courtesy of Surrey NanoSystems."></p><p>&nbsp;</p><p><span>Untuk kasus daun tumbuhan di atas, </span><em><span>klorofil</span></em><span> pada dedaunan memerlukan gelombang dengan panjang gelombang pada rentang biru dan merah dari Cahaya Matahari untuk memasak makanan yang dibutuhkan oleh tumbuhan, sehingga warna hijau yang tidak diserap kemudian dipantulkan oleh dedaunan, yang pada gilirannya diterjemahkan oleh mata kita sebagai warna hijau.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921000805935.png" alt="image-20200921000805935" style="zoom:80%;" /></p><p>&nbsp;</p><p><span>Semua objek lain di permukaan bumi berinteraksi secara berbeda pula terhadap gelombang elektromagnetik yang diterimanya dari matahari. Sebagai contoh, tumbuhan yang berbeda menyerap gelombang dengan panjang gelombang yang berbeda dibandingkan tumbuhan yang lain. Daun yang sehat menyerap lebih banyak gelombang NIR (</span><em><span>Near Infrared</span></em><span>) dibandingkan dengan dedaunan yang mati. Demikian pula berbagai jenis batuan, tanah, air dan objek-objek lain di permukaan bumi: semuanya memiliki </span><strong><span>respons spektral</span></strong><span> yang berbeda-beda. Gambar di bawah merupakan contoh diagram yang menunjukkan seberapa banyak pantulan (</span><em><span>reflektan</span></em><span>) beberapa objek di permukaan bumi terhadap gelombang elektromagnetik dengan panjang gelombang yang berbeda.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921010903297.png" referrerpolicy="no-referrer" alt="image-20200921010903297"></p><p><span>Diagram di atas disebut sebagai diagram </span><em><span>Spectral Reflectance</span></em><span>, yang menggambarkan tingkat pantulan gelombang elektromagnetik dari berbagai objek. </span></p><p><span>Apa yang dapat kita amati dari diagram </span><em><span>Spectral Reflectance</span></em><span> seperti di atas?</span></p><p><span>Dapat kita simpulkan: apabila kita dapat mengidentifikasi seberapa besar pantulan untuk objek tertentu dan pada rentang berapa gelombang yang dipantulkannya, kita bisa memanfaatkan informasi ini untuk mengenali objek di permukaan bumi. Misalnya, apabila suatu objek memantulkan gelombang NIR cukup tinggi, kita dapat mengidentifikasi objek ini sebagai tumbuhan. Demikian juga dengan objek-objek lain. Inilah dasar dari cara kerja </span><em><span>remote sensing</span></em><span>: menggunakan nilai gelombang elektromagnetik yang dipantulkan oleh objek sebagai cara untuk mengidentifikasi jenis objeknya. </span></p><p><span>Boleh jadi, rentang panjang gelombang dari pantulan yang ditangkap oleh sensor ini berada di luar spektrum yang tampak pada mata manusia, misalnya vegetasi pada diagram spectral reflectance di atas yang lebih sensitif pada gelombang NIR. Dengan demikian, sensor pada satelit mampu menangkap informasi yang tidak dapat dilihat oleh mata manusia (dalam hal ini band NIR dan SWIR). Atas alasan inilah ilmu penginderaan jauh seringkali bertujuan untuk memberikan informasi mengenai sesuatu yang tidak dapat dilihat dan dimengerti oleh mata manusia biasa, yaitu &quot;</span><em><span>to see the unseen</span></em><span>&quot;.</span></p><h3><a name="i3-bagaimana-remote-sensing-bekerja" class="md-header-anchor"></a><span>I.3. Bagaimana Remote Sensing bekerja</span></h3><p><span>Gambar berikut menunjukkan bagaimana penginderaan jauh atau </span><em><span>remote sensing</span></em><span> menggunakan gelombang elektromagnetik untuk memperoleh informasi dari permukaan bumi:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921000147693.png" alt="image-20200921000147693" style="zoom: 50%;" /></p><p><span>Pada gambar tersebut dapat dilihat bahwa satelit penginderaan jauh memanfaatkan gelombang elektromagnetik yang dipantulkan oleh objek di permukaan bumi dari cahaya matahari untuk mengenali jenis objek tersebut. Dengan mengetahui sifat-sifat pantulan (</span><em><span>Spectral Reflectance</span></em><span>) yang berbeda, akan dapat dikenali jenis objek tersebut. Satelit penginderaan jauh membawa sensor untuk mengenali berbagai jenis gelombang dengan panjang gelombang yang berbeda. Tiap satelit memiliki misi dan beban (</span><em><span>payload</span></em><span>) sensor yang berbeda-beda pula, tergantung dari tujuan dibuatnya satelit tersebut. Ada satelit yang didesain untuk mengamati permukaan laut, lapisan es di kutub, permukaan daratan bumi, dan lain sebagainya. Sensor pada satelit mengkonversi nilai pantulan ini menjadi angka digital yang dapat disimpan dan diolah sebagai </span><strong><span>citra penginderaan jauh</span></strong><span>.</span></p><p><span>Pendekatan di atas disebut sebagai </span><strong><span>Penginderaan Jauh Sensor Pasif.</span></strong><span> Disebut </span><em><span>pasif</span></em><span> karena sensor tersebut hanya memanfaatkan pantulan Gelombang elektromagnetik dari matahari untuk mengenali objek di permukaan bumi sesuai jenis dan besar pantulannya. Selain jenis ini, terdapat pula Penginderaan Jauh sensor Aktif, dimana sensor mengirimkan gelombang elektromagnetik terlebih dulu, kemudian pantulan dari gelombang ini diterima kembali oleh sensor dan disimpan dalam bentuk digital.</span></p><p>&nbsp;</p><h3><a name="i3-band-pada-citra-satelit" class="md-header-anchor"></a><span>I.3. Band pada Citra Satelit</span></h3><p><span>Apabila sebelumnya kita nyatakan gelombang &#39;radio&#39;  dengan panjang gelombang 1-10 meter, maka rentang ini dapat kita sebut sebagai &#39;</span><strong><span>band</span></strong><span>&#39; atau lebar pita panjang gelombang. Satelit penginderaan jauh yang mengamati bumi menggunakan berbagai kombinasi band yang terpasang pada sensornya untuk mengamati jenis objek tertentu. Sebuah satelit dapat terdiri dari 3, 11, hingga ratusan kombinasi band yang terpasang pada sensornya untuk mengamati jenis objek yang berbeda. Tentunya semakin banyak band yang bisa diamati, semakin detil objek yang bisa dibedakan satu dengan yang lain (misalnya membedakan rumput sintetis dan rumput hidup pada sebuah lapangan bola).</span></p><p><span>Berikut adalah contoh kombinasi band pada citra </span><strong><span>Landsat 8</span></strong><span>. Tiap band atau rentang panjang gelombang memiliki fungsi yang berbeda, karena tiap rentang tersebut tentunya mampu menangkap spectral response yang berbeda sesuai dengan diagram spectral seperti yang disebutkan di atas:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921025135192.png" referrerpolicy="no-referrer" alt="image-20200921025135192"></p><p><span>Tabel di atas menunjukkan bahwa dengan berbagai band yang ada pada Landsat 8 saja kita dapat menghasilkan informasi yang berbeda. Nantinya dalam pengolahan citra untuk mendapatkan informasi dari data penginderaan jauh kita dapat melakukan kombinasi dari berbagai band yang berbeda untuk mendapatkan hasil terbaik dalam mengamati objek yang berbeda di permukaan bumi.</span></p><h3><a name="i4-metadata-citra-satelit" class="md-header-anchor"></a><span>I.4. Metadata Citra Satelit</span></h3><p><span>Apabila kita mencari sebuah buku, maka keterangan yang kita baca di katalog perpustakaan atau toko buku adalah nama pengarang, judul buku, tahun terbit, tebal halaman, dan seterusnya. Keterangan mengenai sebuah &#39;buku&#39; atau dalam hal ini data citra satelit disebut sebagai </span><strong><span>metadata</span></strong><span>.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921035904813.png" referrerpolicy="no-referrer" alt="image-20200921035904813"></p><p><span>File metadata diperoleh bersamaan dengan file lain yang diunduh pada saat citra satelit tersebut diambil. File ini berisi berbagai informasi penting, seperti cakupan citra, band yang digunakan, level citra, dan, yang paling penting: informasi orbit satelit pada saat pengambilan data. Data-data dari metadata ini diantaranya akan digunakan untuk mengkoreksi kesalahan citra.</span></p><div style="page-break-after: always;"></div><h2><a name="bagian-ii-pembagian-satelit-penginderaan-jauh" class="md-header-anchor"></a><span>Bagian II. Pembagian Satelit Penginderaan Jauh</span></h2><p><span>Tiap satelit remote sensing yang berbeda memiliki fungsi yang berbeda sesuai dengan desain resolusi </span><em><span>spasial</span></em><span>, </span><em><span>temporal</span></em><span>, </span><em><span>spectral</span></em><span> dan </span><em><span>radiometrik</span></em><span>nya. Berbagai satelit memiliki misi tersediri yang diemban sesuai dengan jenis sensor (dengan kata lain, kombinasi band) yang diangkutnya. Gambar berikut menujukkan beberapa fungsi yang dapat dilakukan oleh beberapa satelit penginderaan jauh yang populer, seperti MODIS dan Landsat.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921024946671.png" referrerpolicy="no-referrer" alt="image-20200921024946671"></p><h3><a name="ii1-resolusi-citra-satelit" class="md-header-anchor"></a><span>II.1. Resolusi Citra Satelit</span></h3><p><span>Resolusi pada citra satelit menggambarkan seberapa detil informasi yang dapat dibedakan oleh citra. Dengan kata lain, resolusi merupakan unit paling kecil dari sebuah citra dimana informasi dapat dipisahkan satu dengan yang lain. Terdapat empat macam resolusi yang membagi satelit penginderaan jauh menjadi beberapa macam, yaitu:</span></p><h4><a name="resolusi-spasial" class="md-header-anchor"></a><span>Resolusi Spasial</span></h4><p><span>Resolusi spasial menggambarkan unit terkecil yang dapat &#39;dilihat&#39; oleh citra. Semakin besar resolusi spasial, semakin tajam warna dan detil yang ditangkap oleh citra tersebut.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921013010270.png" referrerpolicy="no-referrer" alt="image-20200921013010270"></p><p><span>Cara mudah untuk memahami resolusi citra adalah dengan menggunakan pemahaman mengenai nilai piksel. Berapa ukuran nilai piksel suatu citra satelit ketika menangkap permukaan bumi dalam satuan ukuran luas. Sebagai contoh adalah Landsat 8 berikut yang memiliki resolusi 30 meter x 30 meter persegi.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921041144010.png" referrerpolicy="no-referrer" alt="image-20200921041144010"></p><p><span>Resolusi spasial merupakan salah satu penyebut citra satelit yang paling banyak disebutkan. Secara efektif, citra satelit dapat dibagi menjadi 3 kelompok besar berdasarkan resolusinya:</span></p><ul><li><span>Resolusi kecil, dengan resolusi spasial berkisar antara 1 km persegi</span></li><li><span>Resolusi menengah, dari resolusi 6-30 meter persegi</span></li><li><span>Resolusi tinggi, untuk satelit yang menampilkan citra dengan resolusi sub meter hingga 2 atau 3 meter.</span></li></ul><p><span>Tiap jenis yang berbeda ini memiliki fungsi tersendiri, sebagiamana pada gambar berikut:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921040803739.png" referrerpolicy="no-referrer" alt="image-20200921040803739"></p><h4><a name="resolusi-temporal" class="md-header-anchor"></a><span>Resolusi Temporal</span></h4><p><span>Resolusi temporal menggambarkan seberapa sering sebuah citra satelit melewati suatu daerah yang sama pada orbitnya. Resolusi temporal disebut juga &#39;revisit time&#39; atau waktu kunjungan satelit pada suatu lokasi. Sebagai contoh, resolusi temporal dari satelit Sentinel 2 adalah 5 hari: artinya ketika hari ini satelit menangkap citra di Yogyakarta, maka baru 5 hari lagi satelit ini akan menangkap citra di Yogyakarta lagi.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921041713788.png" referrerpolicy="no-referrer" alt="image-20200921041713788"></p><p>&nbsp;</p><h4><a name="resolusi-spektral" class="md-header-anchor"></a><span>Resolusi Spektral</span></h4><p><span>Di bagian awal dokumen ini telah disebutkan mengenai bagaimana lebar &#39;band&#39; mempengaruhi seberapa banyak objek yang dapat direkam oleh satelit. Semakin sempit rentang panjang gelombang band sebuah citra satelit, maka semakin detil objek yang bisa dimengerti oleh band tersebut. Dengan kata lain, resolusi spektralnya semakin tinggi.</span></p><p><span>Pada gambar di bawah, terdapat perbandingan antara Citra Landsat 7 dan 8, Citra Sentinel 2, ASTER dan MODIS. Berdasarkan keterangan di atas, manakah citra yang memiliki resolusi spektral paling tinggi?</span><span>	</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921041957756.png" referrerpolicy="no-referrer" alt="image-20200921041957756"></p><p>&nbsp;</p><h4><a name="resolusi-radiometrik" class="md-header-anchor"></a><span>Resolusi Radiometrik</span></h4><p><span>Resolusi Radiometrik menggambarkan seberapa banyak kuantitas gelombang yang dapat diterima oleh sensor dan diterjemahkan menjadi </span><strong><span>&#39;bit&#39;</span></strong><span> informasi. Proses konversi gelombang elektromagnetik menjadi angka digital oleh sensor ini seringkali disebut sebagai proses </span><em><span>kuantisasi</span></em><span>.</span></p><p><span>Gambar berikut menunjukkan bagaimana perbedaan tingkat kuantisasi menggambarkan resolusi radiometrik. semakin besar nilai </span><strong><span>&#39;Bit&#39;</span></strong><span> yang dimiliki oleh citra, semakin banyak informasi yang dapat digambarkan oleh citra tersebut dari gelombang yang ditangkap sensor.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200920235722172.png" referrerpolicy="no-referrer" alt="image-20200920235722172"></p><p>&nbsp;</p><h3><a name="ii2-mengenal-beberapa-vendor-penyedia-citra-satelit" class="md-header-anchor"></a><span>II.2. Mengenal beberapa vendor penyedia citra satelit</span></h3><p><span>Dari dulu, dan pada sebagian besar kasus, sampai sekarang, meluncurkan satelit penginderaan jauh ke orbit bumi memerlukan biaya yang tinggi. Untuk itu, penyelenggaraan satelit penginderaan jauh biasanya dilakukan oleh perusahaan besar maupun kecil, baik milik pemerintah maupun swasta. Sub-bab berikut memberikan beberapa contoh </span><a href='https://en.wikipedia.org/wiki/List_of_Earth_observation_satellites'><span>pemilik satelit penginderaan jauh</span></a><span> dimana data-data citra diakuisisi, disimpan dan didistribusikan.</span></p><h4><a name="nasa-national-space-agencyhttpsearthdatanasagovlearnremote-sensing" class="md-header-anchor"></a><a href='https://earthdata.nasa.gov/learn/remote-sensing'><span>NASA (National Space Agency)</span></a></h4><p><span>NASA memiliki sejumlah satelit penting yang memiliki berbagai misi untuk memperoleh informasi mengenai permukaan bumi. Satelit seperti Landsat, Modis dan Jason menyediakan citra satelit yang memiliki arsip hingga puluhan tahun ke belakang sejak program Landsat pertama kali diluncurkan tahun 1970an. </span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/7ug8GnhEYZWq-Sm-r9IfH7fGewqew9bsMVUgw-EX8T-P4Xy_nEHWVNkSX7OpUJ0896wrmE44d5EoEi7JXYx5dr9xBouN47Yd2HNzuVvnb8Rl" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h4><a name="esa-european-space-agencyhttpswwwesaint" class="md-header-anchor"></a><a href='https://www.esa.int/'><span>ESA (European Space Agency)</span></a></h4><p><span>ESA memiliki sejumlah satelit penting yang menyediakan data dalam jumlah besar. Diantaranya yang cukup terkenal adalah seri Sentinel yang memberikan berbagai data penginderaan jauh secara cuma-cuma.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/sentinel-satellites-copernicus-programme-1-678x322.png" referrerpolicy="no-referrer" alt="img"></p><p>&nbsp;</p><h4><a name="digital-globemaxarhttpswwwmaxarcomconstellation" class="md-header-anchor"></a><a href='https://www.maxar.com/constellation'><span>Digital Globe/Maxar</span></a></h4><p><span>Perusahaan dengan nama besar di bidang remote sensing ini memiliki beberapa satelit penginderaan jauh yang sebagian besar berfokus pada penyediaan citra resolusi tinggi. Satelit yang dimilikinya antara lain seperti seri IKONOS, QuickBird, WorldView dan GeoEye. </span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/constellation_beauty_shots_2.jpg" referrerpolicy="no-referrer" alt="img"></p><h4><a name="planetlabshttpswwwplanetcomproductsplanet-imagery" class="md-header-anchor"></a><a href='https://www.planet.com/products/planet-imagery/'><span>PlanetLabs</span></a></h4><p><span>Seiring dengan perkembangan teknologi luar angkasa, pembuatan satelit komersial tidak lagi bergantung pada perusahaan besar dengan dana yang fantastis. Beberapa startup muncul dengan konsep microsatellite untuk mendukung peluncuran satelit berbiaya lebih rendah dengan kemampuan yang mumpuni. PlanetLabs merupakan salah satu perusahaan semacam ini. Dengan satelit seukuran kotak sepatu, Planet Labs berhasil meluncurkan konstelasi satelit yang mampu mengakuisisi citra dengan resolusi spasial dan temporal yang tinggi.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/50410n_main.jpg" referrerpolicy="no-referrer" alt="img"></p><p><span>Berikut adalah spesifikasi beberapa satelit penginderaan jauh milik PlanetLabs:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921045242783.png" referrerpolicy="no-referrer" alt="image-20200921045242783"></p><p>&nbsp;</p><p><a href='https://www.satimagingcorp.com/satellite-sensors/'><span>Link berikut</span></a><span> memberikan gambaran lebih lengkap mengenai berbagai jenis citra satelit penginderaan jauh sebagai referensi.</span></p><div style="page-break-after: always;"></div><h2><a name="bagian-iii-memperoleh-citra-penginderaan-jauh" class="md-header-anchor"></a><span>Bagian III. Memperoleh Citra Penginderaan Jauh</span></h2><p><span>Sebagian besar data citra satelit dapat diperoleh secara bebas dan terbuka, dalam artian pengguna tidak dipungut biaya apapun untuk memperoleh citra satelit. Ini termasuk arsip puluhan tahun citra satelit yang dapat diakses, misalnya Landsat. Sebagain lagi menetapkan biaya tertentu untuk memperoleh citra, seperti pada beberapa perusahaan yang menyediakan layanan distribusi citra satelit yang mereka miliki. Bagian berikut membahas mengenai beberapa cara akses citra dan latihan untuk memperolehnya.</span></p><h3><a name="iii1-citra-bebas-dan-terbuka" class="md-header-anchor"></a><span>III.1. Citra Bebas dan Terbuka</span></h3><p><span>Sebagaimana disebutkan, sebagian citra dengan resolusi menengah hingga rendah memiliki lisensi non-komersial dan dapat dimanfaatkan untuk berbagai keperluan tanpa dipungut biaya. Beberapa contoh berikut adalah platform tempat dimana citra satelit dapat diunduh atau ditampilkan untuk kemudian diolah lebih lanjut:</span></p><h4><a name="earth-explorer" class="md-header-anchor"></a><span>Earth Explorer</span></h4><p><a href='https://earthexplorer.usgs.gov/'><span>Earth Explorer</span></a><span> merupakan salah satu portal yang dapat digunakan untuk mencari dan mengunduh berbagai data citra satelit yang bersifat bebas dan terbuka. Untuk lebih jelasnya, ikuti latihan berikut:</span></p><p>&nbsp;</p><p>&nbsp;</p><blockquote><p><strong><span>Latihan 1: Mengunduh data dari Portal Earth Explorer</span></strong></p><p><span>Pada latihan ini akan ditunjukkan bagaimana menggunakan Earth Explorer untuk mencari dan memperoleh citra satelit yang bersifat gratis (bebas dan terbuka), seperti Landsat atau Modis. </span></p><ol><li><p><span> Buka portal Earth Explorer di alamat </span><a href='https://earthexplorer.usgs.gov/' target='_blank' class='url'>https://earthexplorer.usgs.gov/</a></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921061615828.png" referrerpolicy="no-referrer" alt="image-20200921061615828"></p></li><li><p><span>Untuk penggunaan pertama, terlebih dahulu perlu dilakukan registrasi atau pendaftaran. Klik pada tombol </span><code>Login</code><span> pada bagian pojok kanan atas</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921061822739.png" referrerpolicy="no-referrer" alt="image-20200921061822739"></p></li><li><p><span>Apabila belum ada akun terdaftar pada sistem, lakukan pendaftaran untuk akun baru </span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921061959672.png" referrerpolicy="no-referrer" alt="image-20200921061959672"></p></li><li><p><span>Ikuti proses pendaftaran dengan memasukkan berbagai informasi yang diperlukan. Seluruh formulir harus diisi sesuai dengan data yang sebenarnya. </span></p></li><li><p><span>Setelah proses pendaftaran selesai dan terverifikasi melalui email, login ke portal Earth Explorer kembali.</span></p></li><li><p><span>Panel sebelah kiri digunakan untuk memandu pencarian. Tahap pertama, masukkan nama lokasi yang akan dicari pada bagian </span><code>Feature Name</code><span>. Terlebih dahulu pilih tab </span><code>World Feature</code><span> agar pencarian dilakukan bukan hanya di US saja.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921062754707.png" referrerpolicy="no-referrer" alt="image-20200921062754707"></p></li><li><p><span>Klik </span><code>show</code><span>, kemudian akan muncul hasil pencarian. Klik nama yang muncul di bagian Placename untuk menuju ke lokasi tersebut</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921063014985.png" referrerpolicy="no-referrer" alt="image-20200921063014985"></p></li><li><p><span>Selain menggunakan cara tersebut, pencarian lokasi juga dapat dilakukan dengan menandai lokasi yang dicari menggunakan titik marking. Demikian juga dapat dilakukan dengan menggambar poligon atau lingkaran di daerah yang dicari.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200922083044034.png" referrerpolicy="no-referrer" alt="image-20200922083044034"></p></li><li><p><span>Filter selanjutnya yang bisa diatur adalah pengaturan waktu. Misalnya apabila kita akan mencari citra satelit pada tahun tertentu, masukkan tanggal awal dan tanggal akhir di kriteria pencarian</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921063154854.png" referrerpolicy="no-referrer" alt="image-20200921063154854"></p></li><li><p><span>Setelah filter selesai dibuat, klik pada Data Sets untuk membuka data apa saja yang terdapat di lokasi ini</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921063507698.png" referrerpolicy="no-referrer" alt="image-20200921063507698"></p></li><li><p><span>Bagian kedua adalah pencarian citra. Panel pada bagian kiri kini akan menampilkan pilihan citra yang ada pada lokasi tersebut</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921063605109.png" referrerpolicy="no-referrer" alt="image-20200921063605109"></p></li><li><p><span>Klik pada tanda [+]  di sebelah Landsat untuk melihat pilihan citra Landsat yang ada</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921063705219.png" referrerpolicy="no-referrer" alt="image-20200921063705219"></p><p><span>Terdapat beberapa pilihan Landsat yang tersedia. Untuk pemula, gunakan data Landsat Collection 1 Level-1 untuk memilih Landsat 8. Centang Landsat 8 pada pilihan yang tersedia.</span></p></li><li><p><span>Klik pada </span><code>Results</code><span> untuk menampilkan citra Landsat yang tersedia</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921063835525.png" referrerpolicy="no-referrer" alt="image-20200921063835525"></p></li><li><p><span>Daftar citra Landsat yang tersedia akan ditampilkan pada panel. Perhatikan </span><strong><span>ID</span></strong><span> dari masing-masing citra.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921064146888.png" referrerpolicy="no-referrer" alt="image-20200921064146888"></p></li><li><p><span>Pada bagian bawah dari tiap citra, terdapat menu sebagai berikut:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921064218379.png" alt="image-20200921064218379" style="zoom:150%;" /></p><p><span>Untuk melihat tampilan citra yang akan diunduh, gunakan menu kedua dari sebelah kiri (gambar JPG). Untuk mengunduh, gunakan menu kelima dari sebelah kiri. Setelah menu unduh dipilih, akan muncul beberapa pilihan untuk mengunduh sebagian atau seluruh citra landsat 8 pada scene tersebut. </span></p><blockquote style="background-color:lightyellow">
+    <span style="color:orange"><strong>Peringatan:</strong></span>
+    Apabila Anda meng-klik tombol unduh dengan format Geotiff, citra Landsat dengan ukuran besar akan diunduh ke komputer Anda. Pastikan jaringan internet lancar dan memadai untuk mengunduh data (+- 900MB) tersebut. 
+</blockquote></li><li><p><span>Seluruh citra Landsat 8 terdiri dari 11 band yang masing-masing tersimpan dalam format GeoTIFF. Apabila file tersebut diekstraksi akan muncul seperti berikut:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921065007751.png" referrerpolicy="no-referrer" alt="image-20200921065007751"></p></li><li><p><span>Selain file citra (file dengan ekstensi TIFF), terdapat juga file dengan ekstensi TXT yang berfungsi sebagai informasi metadata, yaitu file MTL:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921065229322.png" referrerpolicy="no-referrer" alt="image-20200921065229322"></p></li><li><p><span>Metadata tersebut berisi berbagai keterangan mengenai scene Landsat yang sedang dibuka. Pelajari apa saja yang termasuk dalam metadata tersebut.</span></p></li></ol><p>&nbsp;</p></blockquote><p>&nbsp;</p><h4><a name="sentinel-hub" class="md-header-anchor"></a><span>Sentinel Hub</span></h4><p><a href='https://www.sentinel-hub.com/explore/'><span>Sentinel Hub</span></a><span> merupakan portal pencarian untuk data-data citra satelit gratis yang disediakan oleh ESA. Beberapa menu yang tersedia antara lain Sentinel Playground, EOBrowser dan Data explorer untuk mencari berbagai citra yang tersedia.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921065603171.png" referrerpolicy="no-referrer" alt="image-20200921065603171"></p><p>&nbsp;</p><h4><a name="remote-pixel" class="md-header-anchor"></a><span>Remote Pixel</span></h4><p><a href='https://remotepixel.ca/'><span>Remote Pixel</span></a><span> merupakan salah satu alternatif pencarian citra satelit yang memudahkan dalam mencari dan mengunduh citra satelit bebas dan terbuka. Beberapa aplikasi yang tersedia antara lain adalah RemotePixel Viewer dan Satellite Search</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921065347572.png" referrerpolicy="no-referrer" alt="image-20200921065347572"></p><p>&nbsp;</p><h3><a name="iii2-citra-satelit-komersial" class="md-header-anchor"></a><span>III.2. Citra Satelit Komersial</span></h3><p><span>Citra satelit komersial dapat diakses melalui situs masing-masing vendor. Di Indonesia, distributor resmi untuk berbagai citra satelit komersial adalah melalui Lembaga Penerbangan dan Antariksa Nasional (LAPAN). Meskipun demikian, terdapat beberapa cara lain untuk membeli citra satelit komersial, misalnya melalui aplikasi SpyMeSAT.</span></p><h4><a name="eos-land-viewer" class="md-header-anchor"></a><span>EOS Land Viewer</span></h4><p><a href='https://eos.com/lv/'><span>EOS Land Viewer</span></a><span> merupakan bagian aplikasi dari EOS System untuk pencarian, visualisasi, penyimpanan dan pemrosesan citra pada platform Cloud. Selain citra gratis, EOS juga menyediakan menu untuk pembelian citra berbayar</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921065940174.png" referrerpolicy="no-referrer" alt="image-20200921065940174"></p><p>&nbsp;</p><h4><a name="spymesat" class="md-header-anchor"></a><span>SpyMeSAT</span></h4><p><span>SpyMeSAT merupakan aplikasi Android dan iOS yang memungkinkan penggunanya untuk mengunduh citra satelit gratis dan berbayar. Sebagai latihan, lakukan langkah berikut untuk mencari citra melalui SpyMeSAT:</span></p><blockquote><p><strong><span>Latihan 2: Menggunakan SpyMeSat untuk mencari Citra Satelit Komersial</span></strong></p><p><span> Untuk latihan mandiri ini, lakukan pengunduhan aplikasi SpyMeSAT melalui Playstore pada </span><a href='https://play.google.com/store/apps/details?id=com.orbitlogic.spymesat&amp;hl=en'><span>alamat ini</span></a><span>:</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921070657754.png" referrerpolicy="no-referrer" alt="image-20200921070657754"></p><p><span>Selanjutnya, lakukan pencarian citra dengan menggunakan berbagai menu yang tersedia. Lakukan eksplorasi pada berbagai citra yang ada dan variasi opsi untuk mengunduh citra tersebut.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200922082304769.png" alt="image-20200922082304769" style="zoom:67%;" /></p><p><span>Identifikasi satelit yang tampak pada tampilan layar. Satelit yang muncul tersebut akan melewati lokasi pada waktu yang diberikan di sebelah kanan. Berapa resolusi spasialnya?</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200922082643145.png" alt="image-20200922082643145" style="zoom:67%;" /></p></blockquote><p>&nbsp;</p><div style="page-break-after: always;"></div><h2><a name="bagian-v-pengantar-google-earth-engine" class="md-header-anchor"></a><span>Bagian V. Pengantar Google Earth Engine</span></h2><p><span>Google Earth Engine merupakan perangkat pemrosesan citra berbasis cloud yang disediakan oleh Google. Untuk praktikum Penginderaan Jauh, Google Earth Engine akan digunakan dengan alasan kemudahan akses data citra sekaligus pengolahan citra penginderaan jauh tanpa perlu mengunduh aplikasi maupun citra satelit yang diolah.</span></p><h3><a name="v1-katalog-citra-google-earth-engine" class="md-header-anchor"></a><span>V.1. Katalog Citra Google Earth Engine</span></h3><p><a href='https://developers.google.com/earth-engine/datasets'><span>Katalog citra</span></a><span> Google Earth Engine menyediakan akses ke berbagai data citra yang tersimpan pada cloud milik Google. Akses terhadap data ini dapat dilakukan menggunakan antarmuka Google Earth Engine, termasuk untuk pemrosesan berbagai analisis pada citra.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921071158325.png" referrerpolicy="no-referrer" alt="image-20200921071158325"></p><p><span>Pada contoh di atas, terdapat tiga jenis data </span><a href='https://developers.google.com/earth-engine/datasets/catalog/landsat-8'><span>Landsat 8</span></a><span> yang disimpan pada Cloud. Mengenai perbedaan dari ketiga set data tersebut akan dibahas pada minggu selanjutnya.</span></p><p>&nbsp;</p><h3><a name="v2-antarmuka-google-earth-engine" class="md-header-anchor"></a><span>V.2. Antarmuka Google Earth Engine</span></h3><p><span>Antarmuka untuk kode yang ditulis pada Google Earth Engine dapat diakses melalui </span><a href='https://code.earthengine.google.com/' target='_blank' class='url'>https://code.earthengine.google.com/</a><span>. Bagian layar ini terdiri atas kanvas (tempat menampilkan peta), Script, Kode dan konsole. Pada bagian Kode inilah nantinya perlu dituliskan kode dalam bahasa Javascript yang digunakan untuk mengakses fungsi-fungsi Earth Engine.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921070456292.png" referrerpolicy="no-referrer" alt="image-20200921070456292"></p><p>&nbsp;</p><h3><a name="v3-mengakses-informasi-citra-dengan-gee" class="md-header-anchor"></a><span>V.3. Mengakses Informasi Citra dengan GEE</span></h3><p><span>Citra Landsat 8 pada Google Earth Engine ditulis dengan informasi ID seperti berikut:</span></p><p><code>LANDSAT/LC08/C01/T1/LC08_120065_20200103</code></p><p><span>Penjelasan untuk bagian terakhir dari ID tersebut adalah:</span></p><ul><li><code>LC08</code><span> :  Landsat 8</span></li></ul><ul><li><code>120065</code><span>: Row dan Path untuk Landsat 8. Di Indonesia, nilai Row dan Path berkisar antara: Row 56-69, Path 100-131</span></li><li><code>20200103</code><span>: Tanggal akuisisi citra </span></li></ul><blockquote><p><strong><span>Latihan 3: Memanggil Citra dengan Google Earth Engine</span></strong></p><p><span>Untuk latihan mandiri ini, akan dilakukan sedikit pengenalan mengenai bagaimana menggunakan Google Earth Engine untuk memanggil dan menampilkan citra satelit Landsat 8. </span></p><ol><li><p><span>Terlebih dahulu perlu dilakukan pendaftaran pada akun Earth Engine di alamat </span><a href='https://earthengine.google.com/new_signup/' target='_blank' class='url'>https://earthengine.google.com/new_signup/</a></p></li><li><p><span>Setelah terdaftar, buka </span><a href='https://code.earthengine.google.com/' target='_blank' class='url'>https://code.earthengine.google.com/</a><span>. Default akan menampilkan halaman script yang masih kosong.</span></p><p><img src="Panduan Praktikum Penginderaan Jauh.assets/image-20200921072051401.png" referrerpolicy="no-referrer" alt="image-20200921072051401"></p><p>&nbsp;</p></li><li><p><span>Masukkan kode berikut pada bagian New Script untuk menampilkan band pada Citra Landsat 8 di Amerika</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="javascript"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="javascript"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre>x</pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Memanggil Citra Landsat</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">image</span> <span class="cm-operator">=</span> <span class="cm-variable">ee</span>.<span class="cm-property">Image</span>(<span class="cm-string">'LANDSAT/LC08/C01/T1/LC08_044034_20140318'</span>);</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Membuat daftar Band pada citra yang telah dipanggil</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">bandNames</span> <span class="cm-operator">=</span> <span class="cm-variable">image</span>.<span class="cm-property">bandNames</span>();</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// List yang berisi nama-nama Band, cetak ke konsol</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">print</span>(<span class="cm-string">'Band pada Citra: '</span>, <span class="cm-variable">bandNames</span>); </span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Memilih Band pertama</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">var</span> <span class="cm-def">B1</span> <span class="cm-operator">=</span> <span class="cm-variable">image</span>.<span class="cm-property">select</span>(<span class="cm-string">'B1'</span>)</span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Menambahkan Citra pada Kanvas GEE</span></span></pre></div><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">Map</span>.<span class="cm-property">addLayer</span>(<span class="cm-variable">B1</span>)</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 286px;"></div><div class="CodeMirror-gutters" style="display: none; height: 286px;"></div></div></div></pre></li><li><p><span>Modifikasi script di atas untuk memanggil Citra Landsat 8 pada lokasi rumah masing-masing. Pencarian ID scene Landsat 8 dapat dilakukan menggunakan berbagai cara yang telah disebutkan di sepanjang modul ini.</span></p></li><li><p><span>Pada citra yang telah dipilih di lokasi rumah masing-masing, panggil juga semua Band yang ada pada Landsat 8 di scene tersebut kemudian tampilkan pada Kanvas GEE.</span></p></li></ol></blockquote><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><h2><a name="beberapa-rujukan-yang-berguna" class="md-header-anchor"></a><span>Beberapa Rujukan yang berguna</span></h2><ul><li><p><span>Glovis, website untuk browsing citra Landsat dan Sentinel</span>
+<a href='http://glovis.usgs.gov/' target='_blank' class='url'>http://glovis.usgs.gov/</a></p></li><li><p><span>Copernicus Sentinel. Aplikasi Android/iOS untuk mengenal lebih jauh mengenai satelit-satelit ESA-Copernicus, termasuk notifikasi apabila ada yang lewat di atas kita</span>
+<a href='https://play.google.com/store/apps/details?id=esa.sentinel' target='_blank' class='url'>https://play.google.com/store/apps/details?id=esa.sentinel</a></p></li><li><p><span>Landsat Dictionary, menyediakan penjelasan mengenai variabel-variable pada metadata Landsat </span>
+<a href='https://lta.cr.usgs.gov/DD/landsat_dictionary.html' target='_blank' class='url'>https://lta.cr.usgs.gov/DD/landsat_dictionary.html</a></p></li><li><p><span>Landsat Explorer, untuk melakukan visualisasi dan analisis data Landsat pada Cloud ArcGIS</span>
+<a href='https://livingatlas2.arcgis.com/landsatexplorer/' target='_blank' class='url'>https://livingatlas2.arcgis.com/landsatexplorer/</a></p><p>&nbsp;</p></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
