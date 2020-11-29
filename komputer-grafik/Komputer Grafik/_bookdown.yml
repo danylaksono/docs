@@ -1,0 +1,5 @@
+book_filename: "Komputer Grafik"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "

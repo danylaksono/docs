@@ -1,0 +1,784 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>get-linuxvm</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 40px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.html-for-mac .inline-math-svg .MathJax_SVG { vertical-align: 0.2px; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none 0s ease 0s; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; margin-top: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+svg[id^="mermaidChart"] { line-height: 1em; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+mark .md-meta { color: rgb(0, 0, 0); opacity: 0.3 !important; }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 30px; z-index: 3; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+/* cyrillic-ext */
+/* cyrillic */
+/* greek-ext */
+/* greek */
+/* vietnamese */
+/* latin-ext */
+/* latin */
+@font-face {
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url('file:///C://Users//Geomatika//AppData//Roaming//Typora/themes/vue/6xKydSBYKcSV-LCoeQqfX1RYOo3i54rwlxdu.woff2') format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}@import '';
+
+:root {
+    --side-bar-bg-color: #fff;
+    --control-text-color: #777;
+    --font-sans-serif: 'Ubuntu', 'Source Sans Pro', sans-serif !important;
+    --font-monospace: 'Fira Code', 'Roboto Mono', monospace !important;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-sans-serif);
+    color: #34495e;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6rem;
+    letter-spacing: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#write {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 20px 30px 100px;
+}
+
+#write p {
+    line-height: 1.6rem;
+    word-spacing: .05rem;
+}
+
+#write ol li {
+    padding-left: 0.5rem;
+}
+
+#write > ul:first-child,
+#write > ol:first-child {
+    margin-top: 30px;
+}
+
+body > *:first-child {
+    margin-top: 0 !important;
+}
+
+body > *:last-child {
+    margin-bottom: 0 !important;
+}
+
+a {
+    color: #42b983;
+    font-weight: 600;
+    padding: 0 2px;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+
+h1 tt,
+h1 code {
+    font-size: inherit !important;
+}
+
+h2 tt,
+h2 code {
+    font-size: inherit !important;
+}
+
+h3 tt,
+h3 code {
+    font-size: inherit !important;
+}
+
+h4 tt,
+h4 code {
+    font-size: inherit !important;
+}
+
+h5 tt,
+h5 code {
+    font-size: inherit !important;
+}
+
+h6 tt,
+h6 code {
+    font-size: inherit !important;
+}
+
+h2 a,
+h3 a {
+    color: #34495e;
+}
+
+h1 {
+    padding-bottom: .4rem;
+    font-size: 2.2rem;
+    line-height: 1.3;
+}
+
+h2 {
+    font-size: 1.75rem;
+    line-height: 1.225;
+    margin: 35px 0 15px;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid #ddd;
+}
+
+h3 {
+    font-size: 1.4rem;
+    line-height: 1.43;
+    margin: 20px 0 7px;
+}
+
+h4 {
+    font-size: 1.2rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+    color: #777;
+}
+
+p,
+blockquote,
+ul,
+ol,
+dl,
+table {
+    margin: 0.8em 0;
+}
+
+li > ol,
+li > ul {
+    margin: 0 0;
+}
+
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+body > h2:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+body > h3:first-child,
+body > h4:first-child,
+body > h5:first-child,
+body > h6:first-child {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+a:first-child h1,
+a:first-child h2,
+a:first-child h3,
+a:first-child h4,
+a:first-child h5,
+a:first-child h6 {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+h1 p,
+h2 p,
+h3 p,
+h4 p,
+h5 p,
+h6 p {
+    margin-top: 0;
+}
+
+li p.first {
+    display: inline-block;
+}
+
+ul,
+ol {
+    padding-left: 30px;
+}
+
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+
+blockquote {
+    border-left: 4px solid #42b983;
+    padding: 10px 15px;
+    color: #777;
+    background-color: rgba(66, 185, 131, .1);
+}
+
+table {
+    padding: 0;
+    word-break: initial;
+}
+
+table tr {
+    border-top: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+
+table tr:nth-child(2n),
+thead {
+    background-color: #fafafa;
+}
+
+table tr th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr td {
+    border: 1px solid #dfe2e5;
+    text-align: left;
+    margin: 0;
+    padding: 6px 13px;
+}
+
+table tr th:first-child,
+table tr td:first-child {
+    margin-top: 0;
+}
+
+table tr th:last-child,
+table tr td:last-child {
+    margin-bottom: 0;
+}
+
+#write strong {
+    padding: 0 1px;
+}
+
+#write em {
+    padding: 0 5px 0 2px;
+}
+
+#write table thead th {
+    background-color: #f2f2f2;
+}
+
+#write .CodeMirror-gutters {
+    border-right: none;
+}
+
+#write .md-fences {
+    border: 1px solid #F4F4F4;
+    -webkit-font-smoothing: initial;
+    margin: 0.8rem 0 !important;
+    padding: 0.3rem 0 !important;
+    line-height: 1.43rem;
+    background-color: #F8F8F8 !important;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.85rem;
+    word-wrap: normal;
+}
+
+#write .CodeMirror-wrap .CodeMirror-code pre {
+    padding-left: 12px;
+}
+
+#write code, tt {
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-family: var(--font-monospace);
+    font-size: 0.92rem;
+    color: #e96900;
+    background-color: #f8f8f8;
+}
+
+tt {
+    margin: 0 2px;
+}
+
+#write .md-footnote {
+    background-color: #f8f8f8;
+    color: #e96900;
+}
+
+/* heighlight. */
+#write mark {
+    background-color: #EBFFEB;
+    border-radius: 2px;
+    padding: 2px 4px;
+    margin: 0 2px;
+    color: #222;
+    font-weight: 500;
+}
+
+#write del {
+    padding: 1px 2px;
+}
+
+.cm-s-inner .cm-link,
+.cm-s-inner.cm-link {
+    color: #22a2c9;
+}
+
+.cm-s-inner .cm-string {
+    color: #22a2c9;
+}
+
+.md-task-list-item > input {
+    margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+    background-color: #f8f8f8;
+}
+
+#write pre.md-meta-block {
+    padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block > .code-tooltip {
+    bottom: .375rem;
+}
+
+#write > h3.md-focus:before {
+    left: -1.5625rem;
+    top: .375rem;
+}
+
+#write > h4.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h5.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+#write > h6.md-focus:before {
+    left: -1.5625rem;
+    top: .285714286rem;
+}
+
+.md-image > .md-meta {
+    border-radius: 3px;
+    font-family: var(--font-monospace);
+    padding: 2px 0 0 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: inherit;
+}
+
+.md-toc {
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#md-notification:before {
+    top: 10px;
+}
+
+/** focus mode */
+
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header,
+.context-menu,
+.megamenu-content,
+footer {
+    font-family: var(--font-sans-serif);
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state {
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+.html-for-mac .context-menu {
+    --item-hover-bg-color: #E6F0FE;
+}
+
+/* completely hide the element where it is not needed */
+.page-break
+{
+    display: none; 
+}
+@media print, (overflow-block: paged) or (overflow-block: optional-paged)
+{
+  .page-break
+  {
+    display: block;
+    page-break-after: always; /* CSS 2 */
+         break-after: page;   /* CSS 3+ */
+  }
+}/* completely hide the element where it is not needed */
+.page-break
+{
+    display: none; 
+}
+@media print, (overflow-block: paged) or (overflow-block: optional-paged)
+{
+  .page-break
+  {
+    display: block;
+    page-break-after: always; /* CSS 2 */
+         break-after: page;   /* CSS 3+ */
+  }
+}
+
+</style>
+</head>
+<body class='typora-export os-windows'>
+<div id='write'  class=''><h1><a name="cara-mendapatkan-linux-virtual-machine-gratis-tutorial" class="md-header-anchor"></a><span>Cara mendapatkan Linux Virtual Machine Gratis: Tutorial</span></h1><p><span>Berikut adalah beberapa panduan singkat mengenai cara untuk mendapatkan akses terhadap sebuah Linux VM secara cuma-cuma. Panduan ini ditujukan untuk civitas Universitas Gadjah Mada, khususnya mahasiswa Departemen Teknik Geodesi UGM yang sedang menempuh mata kuliah SIG Berbasis Web maupun Infrastruktur Informasi Geospasial.</span></p><p><span>Panduan ini merupakan pengantar untuk materi praktikum lanjut mengenai SIG Berbasis Web dan Infrastruktur Informasi Geospasial. Setelah memperoleh satu </span><em><span>instance</span></em><span> Linux VM baik pada cloud maupun lokal, mahasiswa kemudian dapat menggunakannya untuk:</span></p><ul><li><span>Mempelajari perintah sederhana terkait Sistem Operasi Linux</span></li><li><span>Berlatih menggunakan dan mengatur server berbasis Linux (DevOps)</span></li><li><span>Melakukan </span><em><span>deployment</span></em><span> aplikasi berbasis web, seperti Geoserver</span></li><li><span>Menggunakan dan memahami cara kerja Version Control System (VCS) seperti Github dan Gitlab</span></li><li><span>Melakukan instalasi dan mengatur aplikasi geoportal berikut seluruh </span><em><span>dependencies</span></em><span> yang terkait</span></li></ul><p><span>Panduan ini mengasumsikan penggunaan Windows 10 sebagai sistem operasi yang digunakan oleh pembaca serta mesin dengan kemampuan pemrosesan 64-bit. Adapun untuk Distro Linux yang akan digunakan adalah Ubuntu LTS, yang meskipun saat ini tersedia versi 20.04, tetapi pada latihan ini akan digunakan versi 18.04, karena adanya beberapa dependencies yang belum tersedia untuk keperluan geospasial pada versi terbaru.</span></p><p>&nbsp;</p><h2><a name="daftar-isi" class="md-header-anchor"></a><span>Daftar Isi</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n906"><a class="md-toc-inner" href="#cara-mendapatkan-linux-virtual-machine-gratis-tutorial">Cara mendapatkan Linux Virtual Machine Gratis: Tutorial</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1513"><a class="md-toc-inner" href="#daftar-isi">Daftar Isi</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n922"><a class="md-toc-inner" href="#bagian-1-linux-vm-berbasis-cloud">Bagian 1: Linux VM Berbasis Cloud</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n933"><a class="md-toc-inner" href="#amazon-lightsail">Amazon Lightsail</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n984"><a class="md-toc-inner" href="#azure-virtual-machine">Azure Virtual Machine</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1005"><a class="md-toc-inner" href="#digital-ocean">Digital Ocean</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1011"><a class="md-toc-inner" href="#google-cloud-platform-gcp">Google Cloud Platform (GCP)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1015"><a class="md-toc-inner" href="#layanan-vps-lain">Layanan VPS Lain</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n1020"><a class="md-toc-inner" href="#bagian-2-linux-vm-pada-komputer-desktop">Bagian 2: Linux VM pada Komputer Desktop</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1031"><a class="md-toc-inner" href="#virtualisasi-dengan-menggunakan-wsl2">Virtualisasi dengan menggunakan WSL2</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1118"><a class="md-toc-inner" href="#virtualisasi-dengan-vagrant-virtual-boxvmware">Virtualisasi dengan Vagrant (Virtual Box/VMWare)</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n1129"><a class="md-toc-inner" href="#menggunakan-bootable-linux">Menggunakan Bootable Linux</a></span></p></div><h2><a name="bagian-1-linux-vm-berbasis-cloud" class="md-header-anchor"></a><span>Bagian 1: Linux VM Berbasis Cloud</span></h2><p><span>Linux VM berbasis Cloud adalah layanan yang disediakan oleh penyedia (</span><em><span>cloud provider</span></em><span>) untuk memungkinkan pengguna mengakses sebuah Virtual Machine berbasis Linux yang dapat diakses melalui jaringan internet. Konsep Linux VM semacam ini serupa dengan VPS (Virtual Private Server) yang disediakan oleh layanan hosting.</span></p><p><span>Perlu dicatat bahwa akses gratis pada Virtual Machine ini:</span></p><ul><li><span>Hanya dapat diakses pada waktu tertentu, misalnya selama 1 atau 2 bulan</span></li><li><span>Kemampuan umum server (seperti jumlah bandwith yang disediakan, RAM dan media penyimpanan) dibatasi</span></li><li><span>Sebagian memerlukan informasi berupa kartu kredit atau kartu debit yang didukung untuk pembayaran internasional (misalnya </span><a href='https://www.jenius.com/'><span>Jenius</span></a><span>)</span></li></ul><p><span>Berikut adalah panduan untuk mengaktifkan Linux VM berbasis Cloud pada sejumlah </span><em><span>provider</span></em><span>.</span></p><h3><a name="amazon-lightsail" class="md-header-anchor"></a><span>Amazon Lightsail</span></h3><p><a href='https://aws.amazon.com/'><span>AWS</span></a><span> merupakan </span><em><span>cloud provider</span></em><span> yang cukup populer dengan berbagai layanan yang beragam, mulai dari layanan penyimpanan (S3) sampai virtual machine (EC2). Belakangan, AWS meluncurkan layanan yang lebih mudah digunakan oleh pemula, yaitu </span><a href='https://lightsail.aws.amazon.com/'><span>Amazon Lightsail</span></a><span> (</span><a href='https://lightsail.aws.amazon.com/' target='_blank' class='url'>https://lightsail.aws.amazon.com/</a><span>). Amazon Lightsail memudahkan pengguna untuk mengakses layanan cloud sesuai dengan pilihan yang dibutuhkan pengguna. Berikut adalah daftar harga untuk layanan Amazon Lightsail:</span></p><p><img src="get-linuxvm.assets/image-20201121042656257.png" referrerpolicy="no-referrer" alt="image-20201121042656257"></p><p><span>Pada gambar di atas, Tier paling kiri (VM seharga 3.5USD) dapat digunakan gratis selama satu bulan pertama pemakaian.</span></p><p><span>Berikut adalah langkah yang diperlukan untuk mengaktifkan Amazon Lightsail:</span></p><ol start='' ><li><p><span>Buka </span><a href='https://aws.amazon.com/' target='_blank' class='url'>https://aws.amazon.com/</a><span>, kemudian lakukan pendaftaran akun baru menggunakan tombol berikut:</span></p><p><img src="get-linuxvm.assets/image-20201121043034679.png" referrerpolicy="no-referrer" alt="image-20201121043034679"></p></li><li><p><span>Masukkan informasi yang dibutuhkan, seperti alamat email dan nama pengguna</span></p><p><img src="get-linuxvm.assets/image-20201121043132438.png" referrerpolicy="no-referrer" alt="image-20201121043132438"></p></li><li><p><span>Agar layanan gratis dapat digunakan, terlebih dahulu masukkan informasi kartu debet pada bagian Billing &gt; Payment Methods (</span><a href='https://console.aws.amazon.com/billing/home' target='_blank' class='url'>https://console.aws.amazon.com/billing/home</a><span>). Informasi ini hanya digunakan untuk mengaktifkan akun dan tidak akan dipungut biaya selama layanan yang digunakan masih dalam kuota </span><em><span>free tier</span></em></p><p><img src="get-linuxvm.assets/image-20201121061328358.png" referrerpolicy="no-referrer" alt="image-20201121061328358"></p></li><li><p><span>Masukkan informasi kartu, termasuk CVC:</span></p><p><img src="get-linuxvm.assets/image-20201121061454355.png" referrerpolicy="no-referrer" alt="image-20201121061454355"></p></li><li><p><span>Setelah kartu didaftarkan, maka kartu ini dapat digunakan sebagai alat pembayaran pada AWS, sekiranya kelak akan digunakan layanan berbayar</span></p><p><img src="get-linuxvm.assets/image-20201121061725315.png" referrerpolicy="no-referrer" alt="image-20201121061725315"></p></li><li><p><span>Selanjutnya adalah mengaktifkan layanan Lightsail pada </span><a href='https://lightsail.aws.amazon.com/' target='_blank' class='url'>https://lightsail.aws.amazon.com/</a><span>. Klik pada tombol </span><code>Create Instance</code><span> untuk membuat mesin baru</span></p><p><img src="get-linuxvm.assets/image-20201121081446874.png" referrerpolicy="no-referrer" alt="image-20201121081446874"></p><p>&nbsp;</p></li><li><p><span>Ikuti langkah yang tersedia untuk membuat sebuah instance Linux baru. Gunakan OS Ubuntu versi 20.04 atau 18.04 (</span><code>OS Only</code><span>). Keduanya merupakan versi LTS pada saat panduan ini ditulis. Untuk </span><em><span>Instance Location</span></em><span>, pilih lokasi terdekat, yaitu Singapore</span></p><p><img src="get-linuxvm.assets/image-20201121081808311.png" referrerpolicy="no-referrer" alt="image-20201121081808311"><span> </span></p></li><li><p><span>Pada bagian bawah dari halaman yang sama, pilih instance yang akan digunakan. Semakin tinggi spesifikasi server yang diinginkan, maka akan semakin mahal biaya yang harus dibayarkan tiap bulan.</span></p><p><img src="get-linuxvm.assets/image-20201121082148672.png" referrerpolicy="no-referrer" alt="image-20201121082148672"></p><p><span>Untuk keperluan deployment WebGIS atau sekedar berlatih melakukan instalasi perangkat geoportal, instance pertama dengan RAM 512 MB, 1 CPU dan 20GB SSD merupakan batas minimal. Penggunaan instance ini gratis untuk bulan pertama. </span></p><blockquote><p><strong><span>Catatan:</span></strong></p><p><span>Untuk menghindari tagihan pada saldo kartu debet di bulan berikutnya, hapus instance yang dibuat ini sebelum berakhir bulan pertama (</span><em><span>atau kosongkan saldo pada e-card Jenius yang digunakan untuk mendaftar</span></em><span>)</span></p></blockquote></li><li><p><span>Terakhir, beri nama pada Instance yang akan dibuat untuk membedakan mesin ini dengan mesin lain yang (mungkin) akan dibuat di masa yang akan datang. Klik pada </span><code>Create Instance</code><span> untuk membuat mesin ini.</span></p><p><img src="get-linuxvm.assets/image-20201121082753745.png" referrerpolicy="no-referrer" alt="image-20201121082753745"></p></li><li><p><span>Selanjutnya mesin tersebut akan dibuat oleh AWS. Daftar mesin yang digunakan dapat dibuka pada halaman muka Amazon Lightsail</span></p><p><img src="get-linuxvm.assets/image-20201121083112950.png" referrerpolicy="no-referrer" alt="image-20201121083112950"></p></li><li><p><span>Klik pada nama mesin (</span><code>Ubuntu-HT</code><span> pada contoh di atas) untuk membuka halaman pengaturan instance:</span></p><p><img src="get-linuxvm.assets/image-20201121083207975.png" referrerpolicy="no-referrer" alt="image-20201121083207975"></p></li><li><p><span>Klik pada </span><code>Connect using SSH</code><span> pada menu di atas untuk melakukan koneksi ke server melalui browser</span></p></li><li><p><span>Mesin berbasis </span><strong><span>Ubuntu Bionic</span></strong><span> siap digunakan</span></p><p><img src="get-linuxvm.assets/image-20201121083322603.png" referrerpolicy="no-referrer" alt="image-20201121083322603"></p></li></ol><p>&nbsp;</p><p>&nbsp;</p><h3><a name="azure-virtual-machine" class="md-header-anchor"></a><span>Azure Virtual Machine</span></h3><p><a href='https://portal.azure.com/'><span>Azure Virtual Machine</span></a><span> memiliki kuota gratis untuk pengguna yang bekerja sama dengan menggunakan layanan Microsoft Imagine. Untuk civitas UGM, ini berarti kuota sejumlah kurang-lebih 100USD yang dapat digunakan untuk mengaktifkan Azure VM.</span></p><p><img src="get-linuxvm.assets/image-20201121101346181.png" referrerpolicy="no-referrer" alt="image-20201121101346181"></p><p><span>Berikut adalah langkah untuk mengaktifkan Azure VM:</span></p><ol start='' ><li><p><span>Buka </span><a href='https://portal.azure.com/' target='_blank' class='url'>https://portal.azure.com/</a><span>, kemudian login dengan menggunakan email Microsoft UGM (nama-mahasiswa@365.ugm.ac.id) dan password email UGM</span></p></li><li><p><span>Pada halaman yang muncul, klik Hamburger menu pada sebelah kiri untuk memunculkan daftar layanan yang dapat diakses. Klik pada Virtual Machines</span></p><p><img src="get-linuxvm.assets/image-20201121101546428.png" referrerpolicy="no-referrer" alt="image-20201121101546428"></p></li><li><p><span>Klik </span><code>Add &gt; Virtual Machine</code></p><p><img src="get-linuxvm.assets/image-20201121104722382.png" referrerpolicy="no-referrer" alt="image-20201121104722382"></p></li><li><p><span>Muncul konfirmasi untuk menggunakan Free Account dengan batas waktu penggunaan 30 hari. </span></p><p><img src="get-linuxvm.assets/image-20201121101733847.png" referrerpolicy="no-referrer" alt="image-20201121101733847"></p></li><li><p><span>Klik pada Start Free, kemudian ikuti langkah selanjutnya sesuai petunjuk</span></p><p>&nbsp;</p></li></ol><p><span>Lanjutan panduan ini tidak dapat dibuat karena kuota yang telah tersedia untuk UGM telah digunakan, sehingga tidak dapat digunakan untuk membuat dan mengakses mesin virtual. Meskipun demikian, pembaca dapat mengacu pada tutorial yang banyak tersedia online, seperti </span><a href='https://www.dicoding.com/blog/cara-membuat-virtual-machine-ubuntu-server-di-microsoft-azure/'><span>tutorial berikut</span></a><span>.</span></p><p>&nbsp;</p><h3><a name="digital-ocean" class="md-header-anchor"></a><span>Digital Ocean</span></h3><p><span>Berbeda dengan penyedia layanan cloud lain, Digital Ocean hanya menyediakan kupon untuk tiap inisiasi Droplet (Virtual Machine pada Digital Ocean). Meskipun demikian, kuota gratis sebagai mahasiswa dapat diperoleh dengan menggunakan free student pack dari Github for Student:</span></p><p><img src="get-linuxvm.assets/image-20201121062654076.png" referrerpolicy="no-referrer" alt="image-20201121062654076"></p><p><span>Panduan untuk mengaktifkan kode promo ini dapat ditemukan pada </span><a href='https://www.digitalocean.com/community/questions/how-to-use-github-promo-code-student-developer-pack' target='_blank' class='url'>https://www.digitalocean.com/community/questions/how-to-use-github-promo-code-student-developer-pack</a></p><p><img src="get-linuxvm.assets/image-20201121062626200.png" referrerpolicy="no-referrer" alt="image-20201121062626200"></p><p><span>Setelah mengaktifkan kode promo, selanjutnya pembaca dapat mengacu pada berbagai tutorial yang tersedia mengenai cara membuat sebuah VPS dalam bentuk Droplet pada Digital Ocean, misalnya </span><a href='https://musaamin.web.id/cara-membuat-vps-di-digitalocean/'><span>tutorial berikut</span></a><span>.</span></p><p>&nbsp;</p><h3><a name="google-cloud-platform-gcp" class="md-header-anchor"></a><span>Google Cloud Platform (GCP)</span></h3><p><span>Google Cloud Platform memiliki layanan gratis untuk virtual machine yang kurang lebih sama seperti beberapa layanan yang disebutkan di atas. </span><a href='https://cloud.google.com/compute/docs/instances'><span>Link berikut</span></a><span> dapat digunakan sebagai acuan untuk memulai Virtual Machine berbasis Google Cloud Platform. Yang perlu diingat, layanan ini juga memerlukan informasi kartu debet atau kartu kredit, meskipun penggunaan bulan pertama sepenuhnya gratis, sebagaimana pada Amazon Lightsail.</span></p><p><span>Tutorial mengenai bagaimana memulai VPS pada GCP banyak tersedia di Internet. Misalnya, </span><a href='http://www.newbienote.com/2020/09/cara-membuat-virtual-mesin-vps-di.html'><span>tutorial berikut</span></a><span>.</span></p><p>&nbsp;</p><h3><a name="layanan-vps-lain" class="md-header-anchor"></a><span>Layanan VPS Lain</span></h3><p><span>Selain berbagai layanan yang disebutkan di atas, terdapat banyak opsi untuk menggunakan layanan VPS berbayar yang disediakan oleh perusahaan-perusahaan lokal maupun internasional. Paket VPS ini cukup beragam sesuai dengan penawaran yang diberikan oleh tiap perusahaan. Berikut adalah contohnya:</span></p><p><img src="get-linuxvm.assets/image-20201121220819473.png" referrerpolicy="no-referrer" alt="image-20201121220819473"></p><p>&nbsp;</p><p><span>Gambar di atas adalah paket VPS dari </span><a href='https://www.exabytes.co.id/server/vps-linux-ssd/paket#pricing' target='_blank' class='url'>https://www.exabytes.co.id/server/vps-linux-ssd/paket#pricing</a><span>. Perusahaan hosting lain di Indonesia yang menyediakan VPS dapat ditemukan dengan mudah menggunakan pencarian pada Search Engine dengan kata kunci, &quot;VPS Murah&quot; atau yang semisal.</span></p><h2><a name="bagian-2-linux-vm-pada-komputer-desktop" class="md-header-anchor"></a><span>Bagian 2: Linux VM pada Komputer Desktop</span></h2><p><span>Pada lingkungan lokal, Linux dapat dijalankan baik pada lingkungan virtual (Virtualization maupun Containerization) serta digunakan sebagai native installation (diinstall pada harddisk) maupun Live Boot dengan Linux Live. Beberapa opsi untuk menggunakan Linux pada lingkungan lokal di laptop atau PC dapat dilakukan sebagai berikut:</span></p><ul><li><span>Virtualisasi dengan menggunakan WSL2</span></li><li><span>Virtualisasi dengan Vagrant (VirtualBox/VMWare)</span></li><li><span>Live Boot dengan Linux Live</span></li></ul><p><span>Pada bagian ini hanya akan dibahas lebih detil mengenai virtualisasi dengan WSL2. Untuk dua metode lain hanya akan diberikan pengantar dan link untuk dicoba.</span></p><p>&nbsp;</p><h3><a name="virtualisasi-dengan-menggunakan-wsl2" class="md-header-anchor"></a><span>Virtualisasi dengan menggunakan WSL2</span></h3><p><span>WSL2 (Windows Subsystem for Linux 2) merupakan integrasi mesin berbasis Linux pada Windows yang memungkinkan mesin Linux untuk dapat dijalankan pada Windows dengan performa maksimal. Indeks angka &quot;2&quot; menunjukkan bahwa virtualisasi ini adalah pengembangan lebih jauh dari mesin WSL yang pertama kali diusulkan oleh Microsoft pada tahun 2017. Perbedaan mencolok terlihat karena pada WSL2, mesin virtual yang dipasang menggunakan kernel linux yang sebenarnya. Artinya, performa yang dapat diperoleh dari mesin virtual ini juga sebaik mesin Linux yang sebenarnya. Selain itu, dengan menggunakan </span><a href='https://ubuntu.com/wsl'><span>Distro yang didukung oleh WSL2</span></a><span>, akses Windows pada mesin (dan sebaliknya) dapat dilakukan secara hampir </span><em><span>seamless</span></em><span>.</span></p><p><img src="get-linuxvm.assets/image-20201129191425719.png" referrerpolicy="no-referrer" alt="image-20201129191425719"></p><p><span>Untuk instalasi WSL2 ini, berikut adalah persyaratan yang harus dipenuhi:</span></p><ul><li><span>Windows 10 dengan versi update terbaru: Windows 10 May 2020 (2004), Windows 10 May 2019 (1903), or Windows 10 November 2019 (1909). Windows dengan versi update lama (1903 atau 1909) tetap dapat menginstall WSL2 dengan terlebih dahulu melakukan instalasi Windows Update </span><a href='https://support.microsoft.com/en-us/help/4566116/windows-10-update-kb4566116'><span>berikut ini</span></a></li><li><span>Komputer atau laptop yang memiliki dukungan </span><strong><span>Hyper-V Virtualization</span></strong><span>. Periksa </span><a href='https://www.zdnet.com/article/windows-10-tip-find-out-if-your-pc-can-run-hyper-v/'><span>link berikut</span></a><span> untuk mengetahui apakah Komputer atau laptop Anda memiliki dukungan Hyper-V.</span></li></ul><p><span>Untuk melihat versi build Windows yang Anda gunakan, lakukan langkah berikut:</span></p><ul><li><p><span>Buka Windows Run (Win+R)</span></p></li><li><p><span>Ketikkan </span><code>&#39;winver&#39;</code></p></li><li><p><span>Pada jendela yang muncul, akan terlihat versi build Windows yang sedang berjalan</span></p><p><img src="get-linuxvm.assets/image-20201130002138674.png" referrerpolicy="no-referrer" alt="image-20201130002138674"></p><p>&nbsp;</p><p><span>Apabila versi build Windows Anda di bawah </span><code>18362</code><span>, maka terlebih dulu lakukan update Windows menggunakan </span><a href='https://www.microsoft.com/software-download/windows10'><span>Update Assistant</span></a><span>.</span></p></li></ul><blockquote><p><strong><span>Catatan:</span></strong></p><p><span>Panduan ini dibuat dengan mengikuti panduan resmi di:</span></p><p><a href='https://docs.microsoft.com/en-us/windows/wsl/install-win10' target='_blank' class='url'>https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></p><p><span>Periksa tautan tersebut untuk melihat perubahan terbaru terkait dengan instalasi WSL</span></p></blockquote><p>&nbsp;</p><p><span>Berikut adalah petunjuk untuk melakukan instalasi WSL2 pada Sistem Operasi Windows 10:</span></p><ol start='' ><li><p><em><span>Mengaktifkan WSL melalui PowerShell</span></em></p><p><span>Buka </span><code>Windows PowerShell</code><span> sebagai Administrator.   </span></p><p><img src="get-linuxvm.assets/image-20201130000052292.png" referrerpolicy="no-referrer" alt="image-20201130000052292"></p><p><span>Ketikkan perintah berikut pada command prompt yang tersedia:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="powershell"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="powershell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-identifier">dism</span><span class="cm-punctuation">.</span><span class="cm-identifier">exe</span> <span class="cm-operator">/</span><span class="cm-identifier">online</span> <span class="cm-operator">/</span><span class="cm-identifier">enable-feature</span> <span class="cm-operator">/</span><span class="cm-identifier">featurename</span><span class="cm-operator">:</span><span class="cm-identifier">Microsoft-Windows-Subsystem-Linux</span> <span class="cm-operator">/</span><span class="cm-identifier">all</span> <span class="cm-operator">/</span><span class="cm-identifier">norestart</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 44px;"></div><div class="CodeMirror-gutters" style="display: none; height: 44px;"></div></div></div></pre><p><span>Akan muncul pemberitahuan apabila proses telah berhasil:</span></p><p><img src="get-linuxvm.assets/image-20201130001124433.png" alt="image-20201130001124433"  /></p></li><li><p><em><span>Update ke WSL versi 2</span></em><span> </span></p><p><span>Pastikan versi build Windows yang digunakan sesuai untuk persyaratan WSL2 seperti di atas. Periksa </span><a href='https://docs.microsoft.com/en-us/windows/wsl/install-win10#step-2---update-to-wsl-2'><span>link berikut</span></a><span> untuk melihat lebih detil mengenai bagian ini.</span></p></li><li><p><em><span>Aktifkan Virtual Machine Platform</span></em></p><p><span>Pada jendela PowerShell yang sama (sebagai Administrator), ketikkan perintah berikut:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="powershell"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="powershell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-identifier">dism</span><span class="cm-punctuation">.</span><span class="cm-identifier">exe</span> <span class="cm-operator">/</span><span class="cm-identifier">online</span> <span class="cm-operator">/</span><span class="cm-identifier">enable-feature</span> <span class="cm-operator">/</span><span class="cm-identifier">featurename</span><span class="cm-operator">:</span><span class="cm-identifier">VirtualMachinePlatform</span> <span class="cm-operator">/</span><span class="cm-identifier">all</span> <span class="cm-operator">/</span><span class="cm-identifier">norestart</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>Setelah perintah selesai dijalankan, lakukan restart pada Windows. Ini akan mengupdate WSL pada system menjadi versi ke-2</span></p></li><li><p><em><span>Unduh Linux kernel untuk WSL2</span></em></p><p><span>Terlebih dahulu unduh dan install Linux Kernel untuk WSL2 dari </span><a href='https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi'><span>Link Berikut</span></a><span>.</span></p><p><span>Setelah instalasi berhasil, masukkan perintah berikut ke dalam PowerShell yang sama seperti sebelumnya:</span></p><pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="powershell"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="powershell"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 0px; left: 12px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-identifier">wsl</span> <span class="cm-operator">--</span><span class="cm-identifier">set-default-version</span> <span class="cm-number">2</span></span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 22px;"></div></div></div></pre><p><span>Ini akan membuat versi WSL yang telah terinstall menggunakan versi kedua.</span></p></li><li><p><em><span>Melakukan Instalasi Distro Linux</span></em></p><p><span>Pada </span><a href='https://aka.ms/wslstore'><span>Microsoft Store</span></a><span> telah tersedia beberapa distro Linux yang dapat digunakan pada WSL. Buka Microsoft Store, kemudian lakukan instalasi untuk distro yang dipilih. Untuk latihan ini, gunakan </span><code>Ubuntu</code><span>, khususnya versi </span><a href='https://www.microsoft.com/store/apps/9N9TNGVNDL3Q'><span>Ubuntu 18.04</span></a><span>.</span></p><p><img src="get-linuxvm.assets/store.png" referrerpolicy="no-referrer" alt="View of Linux distributions in the Microsoft Store"></p><p><span>Klik </span><code>Get</code><span> untuk melakukan instalasi Ubuntu pada WSL2</span></p><p><img src="get-linuxvm.assets/ubuntustore.png" referrerpolicy="no-referrer" alt="Linux distributions in the Microsoft store"></p></li><li><p><em><span>Memulai WSL</span></em></p><p><span>Setelah instalasi selesai, Ubuntu dapat langsung digunakan pada Windows. Untuk memulai WSL, buka icon menu bergambar logo Ubuntu (</span><img src="get-linuxvm.assets/image-20201130043951692.png" referrerpolicy="no-referrer" alt="image-20201130043951692"><span>). </span></p><p><span>Pada saat pertama kali dibuka, mesin akan meminta </span><strong><span>username</span></strong><span> dan </span><strong><span>password</span></strong><span>. Catat username dan password yang dimasukkan karena ini akan menjadi akun </span><em><span>sudoer</span></em><span>  pada mesin Linux yang dibuat.</span></p><p><img src="get-linuxvm.assets/ubuntuinstall.png" referrerpolicy="no-referrer" alt="Ubuntu unpacking in the Windows console"></p><p><span>Selanjutnya, Ubuntu siap digunakan</span></p><p><img src="get-linuxvm.assets/image-20201130044318893.png" referrerpolicy="no-referrer" alt="image-20201130044318893"></p></li><li><p><em><span>Integrasi WSL dan Windows</span></em></p><p><span>Telah disampaikan sebelumnya bahwa integrasi Linux dan Windows menggunakan WSL2 bersifat hampir seamless. Artinya, kedua sistem dapat saling berkomunikasi tanpa memerlukan media perantara yang rumit.</span></p><p><span>Untuk mengakses file WSL dari windows, buka Explorer, kemudian ketikkan pada bagian directory list: </span><code>\\wsl$</code><span>.</span></p><p><img src="get-linuxvm.assets/image-20201130044709521.png" referrerpolicy="no-referrer" alt="image-20201130044709521"></p><p><span>Maka Windows akan membuka drive pada Linux sebagaimana sebuah folder biasa pada Explorer.</span></p><p><img src="get-linuxvm.assets/image-20201130044817487.png" referrerpolicy="no-referrer" alt="image-20201130044817487"></p><p><span>Berkas yang disimpan pada &#39;folder&#39; ini akan langsung terintegrasi dengan Linux tanpa perlu melakukan </span><em><span>rebooting</span></em><span>.</span></p><p><span>Demikian pula, pada saat Ubuntu memanggil port tertentu, maka WSL akan secara otomatis melakukan </span><em><span>port forwarding</span></em><span>, sehingga port tersebut dapat dibuka pada Windows tanpa perlu melakukan langkah tambahan apapun.</span></p><p><span>Sebagai contoh, berikut adalah pemanggilan Jupyter Lab dari konsol Ubuntu pada WSL2:</span></p><p><img src="get-linuxvm.assets/image-20201130050836357.png" referrerpolicy="no-referrer" alt="image-20201130050836357"></p><p><span>Dan berikut adalah tampilan Jupyter Lab apabila dibuka pada browser di Windows:</span></p><p><img src="get-linuxvm.assets/image-20201130050937842.png" referrerpolicy="no-referrer" alt="image-20201130050937842"></p></li><li><p><em><span>WSL2 untuk keperluan pembangunan aplikasi (development)</span></em></p><p><span>Untuk keperluan pembangunan aplikasi, WSL2 memungkinkan koneksi pada beberapa Code Editor. Sebagai contoh, VSCode memiliki dukungan untuk melakukan </span><em><span>editing</span></em><span> kode pada WSL2 melalui plugin. Klik </span><a href='https://code.visualstudio.com/docs/remote/wsl'><span>Link berikut</span></a><span> untuk detilnya.</span></p><p><img src="https://code.visualstudio.com/assets/docs/remote/wsl/architecture-wsl.png" referrerpolicy="no-referrer" alt="WSL Architecture"></p><p><span>Berikut adalah contoh pemanggilan VSCode dari mesin Ubuntu:</span></p><p><img src="get-linuxvm.assets/image-20201130050149076.png" referrerpolicy="no-referrer" alt="image-20201130050149076"></p><p><span>dan berikut adalah tampilan dari VSCode yang langsung terbuka dan terkoneksi dengan WSL2 tersebut:</span></p><p><img src="get-linuxvm.assets/image-20201130050236723.png" referrerpolicy="no-referrer" alt="image-20201130050236723"></p><p>&nbsp;</p></li></ol><p><span>Karena pengaturan </span><em><span>resource</span></em><span> untuk komputasi (memory, space harddisk) dilakukan </span><a href='https://www.digitalocean.com/community/posts/trying-the-new-wsl-2-its-fast-windows-subsystem-for-linux'><span>secara bersama-sama</span></a><span> oleh Windows dan WSL2 melalui Linux Kernel, maka penggunaan WSL tidak akan membebani sistem Windows. Dengan demikian, penggunaan Linux pada WSL2 ini adalah metode yang lebih disarankan daripada menggunakan Virtual Machine seperti VirtualBox atau VMWare yang dapat membebani kinerja sistem.</span></p><p>&nbsp;</p><h3><a name="virtualisasi-dengan-vagrant-virtual-boxvmware" class="md-header-anchor"></a><span>Virtualisasi dengan Vagrant (Virtual Box/VMWare)</span></h3><p><span> merupakan perangkat yang membantu virtualisasi sistem operasi client (misalnya Linux) pada Host (misalnya Windows) sehingga dapat digunakan untuk keperluan pembangunan aplikasi (</span><em><span>development</span></em><span>). Vagrant membantu agar virtualisasi mesin Linux, misalnya, dapat dilakukan dengan cukup mudah di sistem Host seperti Windows tanpa perlu melakukan pengaturan yang cukup rumit. Sebagai contoh, berikut adalah cara untuk memulai sebuah mesin Vagrant setelah melakukan instalasi:</span></p><p><img src="get-linuxvm.assets/image-20201130051833239.png" referrerpolicy="no-referrer" alt="image-20201130051833239"></p><p><span>dan selanjutnya, mesin linux pada Windows akan dapat langsung digunakan.</span></p><p><span>Pada bagian ini, vagrant tidak akan dibahas dengan detil. Pembaca disarankan untuk mengacu pada berbagai tutorial mengenai Vagrant yang tersedia, contohnya:</span></p><ul><li><a href='https://mragus.com/mengenal-dan-belajar-apa-itu-vagrant/'><span>Memulai Vagrant</span></a></li><li><a href='https://code.tutsplus.com/id/tutorials/vagrant-what-why-and-how--net-26500'><span>Vagrant, apa mengapa dan bagaimana</span></a></li></ul><p>&nbsp;</p><h3><a name="menggunakan-bootable-linux" class="md-header-anchor"></a><span>Menggunakan Bootable Linux</span></h3><p><span>Berbeda dengan kedua cara yang disebutkan sebelumnya, cara berikut merupakan instalasi mesin Linux tanpa virtualisasi, sehingga Linux dalam hal ini digunakan sebagai sebuah sistem operasi seutuhnya. Linux dapat digunakan &#39;sementara&#39; melalui Live Boot maupun dapat diinstall secara permanen pada harddisk sebagai sistem operasi lain selain Windows (dual-boot). Penggunaan Linux dengan </span><code>Live Boot</code><span> sangat disarankan untuk pemula yang ingin mencoba fitur-fitur pada sebuah sistem Operasi Linux tanpa menggunakan resource apapun pada sistem yang sedang berjalan.</span></p><p><span>Bagian ini juga tidak akan dibahas secara lebih mendetil karena banyaknya tutorial yang tersedia mengenai instalasi Linux, baik melalui Live Boot maupun instalasi pada Harddisk. Berikut adalah beberapa tutorial yang dapat diacu:</span></p><ul><li><a href='https://omkomputer.com/cara-membuat-bootable-linux-di-flashdisk/'><span>Membuat LiveBoot distro linux pada USB Flash Drive</span></a></li><li><a href='https://www.linuxmint.com/documentation/user-guide/MATE/indonesian_13.0.pdf'><span>Panduan Resmi LinuxMint</span></a></li><li><a href='https://omkomputer.com/cara-install-ubuntu-dual-boot-dengan-windows-10/'><span>Instalasi dual boot Ubuntu dan Windows 10</span></a></li></ul><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></div>
+</body>
+</html>
