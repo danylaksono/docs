@@ -1,0 +1,64 @@
+---
+title: "Palmer Penguins"
+author: "Cobblepot Analytics"
+format: dashboard
+---
+
+```{ojs}
+//| output: false
+
+// data = FileAttachment("penguins.csv")
+//   .csv({ typed: true })
+data = penguins
+
+filtered = data.filter(function(penguin) {
+  return culmen_length_min < penguin.culmen_length_mm &&
+         islands.includes(penguin.island);
+})
+```
+
+# {.sidebar}
+
+![](https://allisonhorst.github.io/palmerpenguins/reference/figures/culmen_depth.png){width="30%"}
+
+```{ojs}
+viewof culmen_length_min = Inputs.range(
+  [32, 50], 
+  {value: 35, step: 1, label: "Culmen length (min):"}
+)
+viewof islands = Inputs.checkbox(
+  ["Torgersen", "Biscoe", "Dream"], 
+  { value: ["Torgersen", "Biscoe", "Dream"], 
+    label: "Islands:"
+  }
+)
+```
+
+# Plot 
+
+## Row {height=70%}
+
+```{ojs}
+
+Plot.plot({
+  y: {grid: true},
+  height: 500,
+  color: {legend: true},
+  marks: [
+    Plot.dot(filtered, Plot.dodgeX("middle", {fx: "species", y: "body_mass_g", fill: "sex"}))
+  ]
+})
+```
+
+# Data
+
+## Row {height=10%}
+```{ojs}
+viewof searchresult = Inputs.search(filtered, "species")
+```
+
+## Row
+```{ojs}
+//| height: 450
+Inputs.table(searchresult)
+```
